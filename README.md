@@ -114,6 +114,7 @@ Mototransporte-Satelite/
     ├── routes.js
     ├── drivers.js
     └── vehicles.js
+```
 
 ## 🚀 Instalación
 
@@ -138,7 +139,7 @@ Mototransporte-Satelite/
 4. Se abrirá en `http://127.0.0.1:5500`
 
 ### **Opción 3: Servidor local simple**
-```bash
+bash
 # Con Python 3
 python -m http.server 8000
 
@@ -147,7 +148,6 @@ npx http-server -p 8000
 
 # Abrir en navegador
 http://localhost:8000
-```
 
 ### **Opción 4: GitHub Pages (Hosting gratuito)**
 1. Sube el proyecto a GitHub
