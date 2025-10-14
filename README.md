@@ -96,25 +96,24 @@ Sistema completo de gestión para Mototransporte Satélite - Transporte Escolar 
 ## 📁 Estructura del Proyecto
 
 ```
-Mototransporte_satelite/
-│
-├── index.html                 # Página principal (ABRIR ESTE ARCHIVO) 
-├── README.md                  # Este archivo
-│
+Mototransporte-Satelite/
+├── index.html
+├── README.md
+├── img/
+│   └── grupo.jpeg       
 ├── css/
-│   ├── styles.css            # Estilos principales
-│   ├── components.css        # Estilos de componentes
-│   ├── responsive.css        # Estilos responsivos
-│   └── animations.css        # Animaciones
-│
+│   ├── styles.css
+│   ├── components.css   
+│   ├── responsive.css
+│   └── animations.css
 └── js/
-    ├── main.js              # Inicialización principal
-    ├── students.js          # Gestión de estudiantes
-    ├── routes.js            # Gestión de rutas
-    ├── drivers.js           # Gestión de conductores
-    ├── vehicles.js          # Gestión de vehículos
-    ├── validation.js        # Validaciones
-    └── utils.js             # Funciones utilitarias
+    ├── main.js          
+    ├── utils.js
+    ├── validation.js
+    ├── students.js
+    ├── routes.js
+    ├── drivers.js
+    └── vehicles.js
 
 ## 🚀 Instalación
 
@@ -285,8 +284,10 @@ Para soporte o consultas:
 - SweetAlert2 por las hermosas alertas
 - La comunidad de código abierto
 - A todos los usuarios del sistema
-Foto del Grupo
-<img src="./img/grupo.jpeg" alt="Foto del Grupo" width="550"> <br>
+
+### Foto del Grupo
+![Foto del Grupo](./img/grupo.jpeg)
+
 ---
 
 **Desarrollado con ❤️ para Mototransporte Satélite - Transporte Escolar Local**
