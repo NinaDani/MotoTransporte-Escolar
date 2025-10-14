@@ -9,7 +9,6 @@
 Sistema web profesional para la gestión de transporte escolar local sin base de datos, utilizando **localStorage** del navegador. **100% HTML + CSS + JavaScript** - No requiere servidor PHP.
 
 ## 📋 Descripción
-
 Sistema completo de gestión para Mototransporte Satélite - Transporte Escolar Local, que permite administrar estudiantes, rutas, conductores y vehículos de manera eficiente y organizada.
 
 ## 🎯 Requerimientos Funcionales
@@ -20,79 +19,66 @@ Sistema completo de gestión para Mototransporte Satélite - Transporte Escolar 
 - Eliminar registros de estudiantes
 - Visualizar lista completa de estudiantes
 - Buscar estudiantes por diferentes criterios
-
 ### RF002 - Gestión de Rutas
 - Crear rutas de transporte escolar
 - Definir horarios de recogida y entrega
 - Asignar zonas y paradas
 - Modificar rutas existentes
 - Eliminar rutas
-
 ### RF003 - Gestión de Conductores
 - Registrar conductores con licencia y documentación
 - Actualizar información de conductores
 - Consultar historial y disponibilidad
 - Gestionar asignaciones a rutas
-
 ### RF004 - Gestión de Vehículos
 - Registrar vehículos con placas y capacidad
 - Llevar control de mantenimiento
 - Asignar vehículos a rutas
 - Controlar estado y disponibilidad
-
 ### RF005 - Validaciones
 - Validación de campos obligatorios
 - Validación de formatos (email, teléfono, CI)
 - Validación de rangos de edad
 - Prevención de duplicados
 - Validación de capacidad de vehículos
-
 ### RF006 - Reportes
 - Generar reportes de estudiantes por ruta
 - Reporte de ocupación de vehículos
 - Listados de conductores y asignaciones
 
 ## 🔧 Requerimientos No Funcionales
-
 ### RNF001 - Usabilidad
 - Interfaz intuitiva y fácil de usar
 - Diseño responsivo para móviles, tablets y desktop
 - Mensajes claros y orientativos
 - Navegación fluida entre secciones
-
 ### RNF002 - Performance
 - Tiempo de carga menor a 2 segundos
 - Respuestas inmediatas en operaciones CRUD
 - Optimización de imágenes y recursos
 - Código JavaScript optimizado
-
 ### RNF003 - Seguridad
 - Validación de entrada en cliente y servidor
 - Prevención de inyección de código
 - Sanitización de datos
 - Manejo seguro de archivos
-
 ### RNF004 - Mantenibilidad
 - Código modular y organizado
 - Separación de responsabilidades
 - Comentarios en código complejo
 - Nombres descriptivos de variables y funciones
-
 ### RNF005 - Compatibilidad
 - Compatible con navegadores modernos (Chrome, Firefox, Safari, Edge)
 - Diseño adaptable a diferentes resoluciones
 - Soporte para dispositivos táctiles
-
 ### RNF006 - Disponibilidad
 - Sistema disponible 24/7
 - Almacenamiento persistente en archivos
 - Backup automático de datos (recomendado)
-
 ### RNF007 - Escalabilidad
 - Estructura preparada para crecimiento
 - Código reutilizable
 - Posibilidad de migrar a base de datos
-
 ## 📁 Estructura del Proyecto
 
 ```
@@ -258,16 +244,6 @@ El sistema incluye funciones para exportar/importar datos:
 - [ ] Panel de padre de familia
 - [ ] Reportes en PDF
 - [ ] Migración a base de datos MySQL
-
-## 👥 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-1. Fork del proyecto
-2. Crear rama feature (`git checkout -b feature/NuevaCaracteristica`)
-3. Commit cambios (`git commit -m 'Añadir nueva característica'`)
-4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abrir Pull Request
-
 ## 📄 Licencia
 
 © 2025 Mototransporte Satélite. Todos los derechos reservados.
