@@ -96,25 +96,25 @@ Sistema completo de gestión para Mototransporte Satélite - Transporte Escolar 
 ## 📁 Estructura del Proyecto
 
 ```
-Mototransporte_satelite/<br>
+Mototransporte_satelite/
 │
-├── index.html                 # Página principal (ABRIR ESTE ARCHIVO) <br>
-├── README.md                  # Este archivo<br>
+├── index.html                 # Página principal (ABRIR ESTE ARCHIVO) 
+├── README.md                  # Este archivo
 │
-├── css/<br>
-│   ├── styles.css            # Estilos principales<br>
-│   ├── components.css        # Estilos de componentes<br>
-│   ├── responsive.css        # Estilos responsivos<br>
-│   └── animations.css        # Animaciones<br>
-│<br>
-└── js/<br>
-    ├── main.js              # Inicialización principal<br>
-    ├── students.js          # Gestión de estudiantes<br>
-    ├── routes.js            # Gestión de rutas<br>
-    ├── drivers.js           # Gestión de conductores<br>
-    ├── vehicles.js          # Gestión de vehículos<br>
-    ├── validation.js        # Validaciones<br>
-    └── utils.js             # Funciones utilitarias<br>
+├── css/
+│   ├── styles.css            # Estilos principales
+│   ├── components.css        # Estilos de componentes
+│   ├── responsive.css        # Estilos responsivos
+│   └── animations.css        # Animaciones
+│
+└── js/
+    ├── main.js              # Inicialización principal
+    ├── students.js          # Gestión de estudiantes
+    ├── routes.js            # Gestión de rutas
+    ├── drivers.js           # Gestión de conductores
+    ├── vehicles.js          # Gestión de vehículos
+    ├── validation.js        # Validaciones
+    └── utils.js             # Funciones utilitarias
 
 ## 🚀 Instalación
 
