@@ -301,3 +301,102 @@ window.addEventListener('beforeunload', (e) => {
 
 // Exportar para uso global
 window.App = App;
+// ============================================
+// MOSTRAR README CON IMÁGENES Y RESPONSIVE
+// ============================================
+document.addEventListener("DOMContentLoaded", () => {
+    const readmeBtn = document.getElementById("readmeBtn");
+    if (readmeBtn) {
+        readmeBtn.addEventListener("click", async () => {
+            try {
+                const response = await fetch("README.md");
+                const markdownText = await response.text();
+                
+                // Convertir bloques de código ```
+                let htmlFormatted = markdownText.replace(/```([\s\S]*?)```/gim, (match, code) => {
+                    return `<pre style="background:#1e293b; color:#e2e8f0; padding:1rem; border-radius:0.5rem; overflow-x:auto; font-size:0.875rem; line-height:1.6; margin:1rem 0; white-space:pre-wrap;"><code>${code.trim()}</code></pre>`;
+                });
+                
+                // Convertir imágenes Markdown ![alt](url)
+                htmlFormatted = htmlFormatted.replace(
+                    /!\[([^\]]*)\]\(([^)]+)\)/gim,
+                    '<img src="$2" alt="$1" style="max-width:100%; height:auto; border-radius:0.75rem; margin:1.5rem auto; display:block; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />'
+                );
+                
+                // Convertir imágenes HTML <img src="..." />
+                htmlFormatted = htmlFormatted.replace(
+                    /<img\s+src="([^"]+)"\s+alt="([^"]*)"\s+width="(\d+)"\s*\/?>/gim,
+                    '<img src="$1" alt="$2" style="max-width:100%; width:$3px; height:auto; border-radius:0.75rem; margin:1.5rem auto; display:block; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />'
+                );
+                
+                // Convertir títulos
+                htmlFormatted = htmlFormatted
+                    .replace(/^### (.*$)/gim, '<h3 style="color:#6366f1; margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.125rem; font-weight:600;">$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2 style="color:#4f46e5; margin-top:2rem; margin-bottom:1rem; font-size:1.5rem; font-weight:700;">$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1 style="color:#4338ca; margin-bottom:1.5rem; font-size:1.875rem; font-weight:700;">$1</h1>');
+                
+                // Convertir negritas, cursivas y código inline
+                htmlFormatted = htmlFormatted
+                    .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#1e293b; font-weight:600;">$1</strong>')
+                    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                    .replace(/`([^`]+)`/gim, '<code style="background:#f1f5f9; padding:0.125rem 0.375rem; border-radius:0.25rem; font-size:0.875rem; color:#6366f1; font-family:monospace;">$1</code>');
+                
+                // Convertir listas
+                htmlFormatted = htmlFormatted
+                    .replace(/^- (.*$)/gim, '<li style="margin-left:1.5rem; margin-bottom:0.5rem; list-style-type:disc;">$1</li>')
+                    .replace(/^\d+\. (.*$)/gim, '<li style="margin-left:1.5rem; margin-bottom:0.5rem; list-style-type:decimal;">$1</li>');
+                
+                // Convertir líneas horizontales
+                htmlFormatted = htmlFormatted.replace(/^---$/gim, '<hr style="border:none; border-top:2px solid #e2e8f0; margin:2rem 0;" />');
+                
+                // Convertir <br>
+                htmlFormatted = htmlFormatted.replace(/<br>/gim, '<br style="margin:0.5rem 0;" />');
+                
+                // Convertir saltos de línea
+                htmlFormatted = htmlFormatted.replace(/\n\n/gim, '<br>');
+                
+                // Detectar dispositivo
+                const isMobile = window.innerWidth < 768;
+                
+                Swal.fire({
+                    title: `<h2 style="color:#6366f1; font-weight:700; margin-bottom:0.75rem; font-size:${isMobile ? '1.25rem' : '1.5rem'};">📘 Documentación del Sistema</h2>`,
+                    html: `
+                        <div style="
+                            text-align:left; 
+                            background:#f8fafc; 
+                            border-radius:0.75rem; 
+                            padding:${isMobile ? '1rem' : '1.5rem'}; 
+                            max-height:${isMobile ? '60vh' : '70vh'}; 
+                            overflow-y:auto; 
+                            overflow-x:auto;
+                            box-shadow:inset 0 0 8px rgba(0,0,0,0.08);
+                            font-family:'Poppins', 'Segoe UI', sans-serif;
+                            color:#1e293b;
+                            line-height:1.7;
+                            font-size:${isMobile ? '0.875rem' : '1rem'};
+                        ">
+                            ${htmlFormatted}
+                        </div>
+                    `,
+                    width: isMobile ? '95%' : (window.innerWidth < 1024 ? '85%' : '900px'),
+                    showConfirmButton: true,
+                    confirmButtonText: '✅ Cerrar',
+                    confirmButtonColor: '#6366f1',
+                    background: '#ffffff',
+                    padding: isMobile ? '1rem' : '1.5rem',
+                    customClass: {
+                        popup: 'readme-responsive-modal',
+                        confirmButton: 'readme-confirm-btn'
+                    }
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al cargar README',
+                    text: 'No se pudo cargar el archivo README.md',
+                    confirmButtonColor: '#6366f1'
+                });
+            }
+        });
+    }
+});
