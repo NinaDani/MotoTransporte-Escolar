@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de gestión para Mototransporte Satélite - Transporte Escolar Local">
+    <meta name="keywords" content="transporte escolar, mototransporte, gestión escolar">
+    <meta name="author" content="Mototransporte Satélite">
+    <title>Mototransporte Satélite - Sistema de Gestión</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shuttle-van"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Mototransporte Satélite</h1>
+                        <p>Transporte Escolar de Confianza</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon tooltip" data-tooltip="Ver Documentación" id="readmeBtn">
+                        <i class="fas fa-book"></i>
+                    </button>
+                    <button class="btn-icon tooltip" data-tooltip="Exportar Datos" onclick="Utils.exportAllData()">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn-icon tooltip" data-tooltip="Importar Datos" onclick="Utils.importData()">
+                        <i class="fas fa-upload"></i>
+                    </button>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" id="mainNav">
+                    <ul>
+                        <li><a href="#dashboard" class="nav-link active" data-section="dashboard"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                        <li><a href="#students" class="nav-link" data-section="students"><i class="fas fa-user-graduate"></i> <span>Estudiantes</span></a></li>
+                        <li><a href="#routes" class="nav-link" data-section="routes"><i class="fas fa-route"></i> <span>Rutas</span></a></li>
+                        <li><a href="#drivers" class="nav-link" data-section="drivers"><i class="fas fa-id-card"></i> <span>Conductores</span></a></li>
+                        <li><a href="#vehicles" class="nav-link" data-section="vehicles"><i class="fas fa-bus"></i> <span>Vehículos</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> Panel de Control</h2>
+                    <p>Resumen general del sistema</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon students-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalStudents">0</h3>
+                            <p>Estudiantes Registrados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon routes-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalRoutes">0</h3>
+                            <p>Rutas Activas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon drivers-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalDrivers">0</h3>
+                            <p>Conductores</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon vehicles-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalVehicles">0</h3>
+                            <p>Vehículos Disponibles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="dashboard-section">
+                        <h3><i class="fas fa-bell"></i> Notificaciones Recientes</h3>
+                        <div class="notifications" id="notifications">
+                            <div class="notification-item">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Sistema iniciado correctamente</p>
+                                <span class="notification-time">Ahora</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-graduate"></i> Gestión de Estudiantes</h2>
+                    <button class="btn btn-primary" id="addStudentBtn">
+                        <i class="fas fa-plus"></i> Nuevo Estudiante
+                    </button>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchStudent" placeholder="Buscar estudiante por nombre, CI o dirección...">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>CI</th>
+                                <th>Nombre Completo</th>
+                                <th>Edad</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>Ruta</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Routes Section -->
+            <section id="routes" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-route"></i> Gestión de Rutas</h2>
+                    <button class="btn btn-primary" id="addRouteBtn">
+                        <i class="fas fa-plus"></i> Nueva Ruta
+                    </button>
+                </div>
+                
+                <div class="cards-grid" id="routesGrid">
+                    <!-- Tarjetas de rutas dinámicas -->
+                </div>
+            </section>
+
+            <!-- Drivers Section -->
+            <section id="drivers" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-id-card"></i> Gestión de Conductores</h2>
+                    <button class="btn btn-primary" id="addDriverBtn">
+                        <i class="fas fa-plus"></i> Nuevo Conductor
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table" id="driversTable">
+                        <thead>
+                            <tr>
+                                <th>CI</th>
+                                <th>Nombre Completo</th>
+                                <th>Licencia</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driversTableBody">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Vehicles Section -->
+            <section id="vehicles" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bus"></i> Gestión de Vehículos</h2>
+                    <button class="btn btn-primary" id="addVehicleBtn">
+                        <i class="fas fa-plus"></i> Nuevo Vehículo
+                    </button>
+                </div>
+                
+                <div class="cards-grid" id="vehiclesGrid">
+                    <!-- Tarjetas de vehículos dinámicas -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-shuttle-van"></i> Mototransporte Satélite</h3>
+                    <p>Transporte Escolar Local de Confianza</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Warnes, Santa Cruz, Bolivia</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-phone"></i> +591 XXX-XXXXX</p>
+                    <p><i class="fas fa-envelope"></i> info@mototransportesatelite.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Horarios de Atención</h4>
+                    <p>Lunes a Viernes: 7:00 AM - 6:00 PM</p>
+                    <p>Sábados: 7:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+              
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mototransporte Satélite. Todos los derechos reservados a:</p>
+                <p>Product Owner: Sheril Melgar</p>
+                <p>Scrum Master: Alexanders Estrada Paredes</p>
+                <p>Desarrolladores: Daniela Nina Chambi,</p> 
+                <p>Kenia Mariana Chavez Rivero,</p>
+                     <p>Matias Cano Ávila </p>
+                <p>Desarrollado con <i class="fas fa-heart"></i> para la comunidad educativa</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/students.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/drivers.js"></script>
+    <script src="js/vehicles.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
