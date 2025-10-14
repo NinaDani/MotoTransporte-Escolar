@@ -101,7 +101,6 @@ Mototransporte-Satelite/
     ├── drivers.js
     └── vehicles.js
 ```
-
 ## 🚀 Instalación
 
 ### ✅ **VERSIÓN SIN SERVIDOR - Funciona directamente con HTML**
@@ -125,7 +124,7 @@ Mototransporte-Satelite/
 4. Se abrirá en `http://127.0.0.1:5500`
 
 ### **Opción 3: Servidor local simple**
-bash
+```bash
 # Con Python 3
 python -m http.server 8000
 
