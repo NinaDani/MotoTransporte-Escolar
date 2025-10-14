@@ -424,7 +424,7 @@ const Utils = {
 
 window.Utils = Utils;
 
-// --- EVENTO: Ver Documentación con diseño y formato ---
+// --- EVENTO: Ver Documentación RESPONSIVO ---
 document.addEventListener("DOMContentLoaded", () => {
     const readmeBtn = document.getElementById("readmeBtn");
     if (readmeBtn) {
@@ -432,43 +432,58 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const response = await fetch("README.md");
                 const markdownText = await response.text();
-
+                
                 // Convierte Markdown a HTML simple
                 const htmlFormatted = markdownText
-                    .replace(/^### (.*$)/gim, '<h3 style="color:#2563eb;">$1</h3>')
-                    .replace(/^## (.*$)/gim, '<h2 style="color:#1e40af;">$1</h2>')
-                    .replace(/^# (.*$)/gim, '<h1 style="color:#1d4ed8;">$1</h1>')
-                    .replace(/\*\*(.*?)\*\*/gim, '<b>$1</b>')
-                    .replace(/\*(.*?)\*/gim, '<i>$1</i>')
-                    .replace(/`(.*?)`/gim, '<code style="background:#e5e7eb; padding:2px 4px; border-radius:4px;">$1</code>')
-                    .replace(/\n- (.*)/gim, '<ul style="margin-left:20px;"><li>$1</li></ul>')
-                    .replace(/\n\d+\. (.*)/gim, '<ol style="margin-left:20px;"><li>$1</li></ol>')
-                    .replace(/\n\n/gim, '<br><br>');
-
+                    .replace(/^### (.*$)/gim, '<h3 style="color:#6366f1; margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.125rem;">$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2 style="color:#4f46e5; margin-top:2rem; margin-bottom:1rem; font-size:1.5rem;">$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1 style="color:#4338ca; margin-bottom:1.5rem; font-size:1.875rem;">$1</h1>')
+                    .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#1e293b;">$1</strong>')
+                    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                    .replace(/`(.*?)`/gim, '<code style="background:#f1f5f9; padding:0.125rem 0.375rem; border-radius:0.25rem; font-size:0.875rem; color:#6366f1;">$1</code>')
+                    .replace(/^- (.*$)/gim, '<li style="margin-left:1.25rem; margin-bottom:0.5rem;">$1</li>')
+                    .replace(/^\d+\. (.*$)/gim, '<li style="margin-left:1.25rem; margin-bottom:0.5rem; list-style-type:decimal;">$1</li>')
+                    .replace(/\n\n/gim, '<br>');
+                
+                // Detectar si es móvil
+                const isMobile = window.innerWidth < 768;
+                
                 Swal.fire({
-                    title: '<h2 style="color:#2563eb; font-weight:700; margin-bottom:10px;">📘 Documentación del Sistema</h2>',
+                    title: `<h2 style="color:#6366f1; font-weight:700; margin-bottom:0.75rem; font-size:${isMobile ? '1.25rem' : '1.5rem'};">📘 Documentación del Sistema</h2>`,
                     html: `
                         <div style="
                             text-align:left; 
-                            background:#f9fafb; 
-                            border-radius:12px; 
-                            padding:20px; 
-                            max-height:450px; 
+                            background:#f8fafc; 
+                            border-radius:0.75rem; 
+                            padding:${isMobile ? '1rem' : '1.5rem'}; 
+                            max-height:${isMobile ? '60vh' : '70vh'}; 
                             overflow-y:auto; 
-                            box-shadow:inset 0 0 6px rgba(0,0,0,0.1);
-                            font-family:'Segoe UI', sans-serif;
-                            color:#111827;
-                            line-height:1.6;
+                            box-shadow:inset 0 0 8px rgba(0,0,0,0.08);
+                            font-family:'Poppins', 'Segoe UI', sans-serif;
+                            color:#1e293b;
+                            line-height:1.7;
+                            font-size:${isMobile ? '0.875rem' : '1rem'};
                         ">
                             ${htmlFormatted}
                         </div>
                     `,
-                    width: 850,
+                    width: isMobile ? '95%' : (window.innerWidth < 1024 ? '85%' : '850px'),
                     showConfirmButton: true,
-                    confirmButtonText: 'Cerrar',
-                    confirmButtonColor: '#2563eb',
+                    confirmButtonText: '✅ Cerrar',
+                    confirmButtonColor: '#6366f1',
                     background: '#ffffff',
-                    scrollbarPadding: false
+                    padding: isMobile ? '1rem' : '1.5rem',
+                    customClass: {
+                        popup: 'readme-responsive-modal',
+                        confirmButton: 'readme-confirm-btn'
+                    },
+                    didOpen: () => {
+                        // Añadir estilos adicionales al contenedor
+                        const container = document.querySelector('.readme-responsive-modal .swal2-html-container');
+                        if (container) {
+                            container.style.fontSize = isMobile ? '0.875rem' : '1rem';
+                        }
+                    }
                 });
             } catch (error) {
                 Utils.showAlert('error', 'Error al abrir README', error.message);
