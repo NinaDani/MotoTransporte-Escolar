@@ -590,3 +590,166 @@
 .readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
+/* ============================================
+   ESTILOS PARA MODAL README - RESPONSIVO
+   ============================================ */
+
+.readme-responsive-modal {
+    font-family: 'Poppins', 'Segoe UI', sans-serif !important;
+}
+
+.readme-responsive-modal .swal2-html-container {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.readme-responsive-modal h1,
+.readme-responsive-modal h2,
+.readme-responsive-modal h3 {
+    font-weight: 600 !important;
+}
+
+.readme-responsive-modal ul,
+.readme-responsive-modal ol {
+    padding-left: 1.5rem !important;
+    margin: 0.5rem 0 !important;
+}
+
+.readme-responsive-modal li {
+    margin-bottom: 0.5rem !important;
+}
+
+.readme-responsive-modal code {
+    font-family: 'Courier New', monospace !important;
+    word-break: break-word !important;
+}
+
+.readme-responsive-modal pre {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    font-family: 'Courier New', 'Consolas', monospace !important;
+    margin: 1rem 0 !important;
+}
+
+.readme-responsive-modal pre code {
+    background: transparent !important;
+    padding: 0 !important;
+    color: inherit !important;
+}
+
+/* Estilos para imágenes */
+.readme-responsive-modal img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 0.75rem !important;
+    margin: 1.5rem auto !important;
+    display: block !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.readme-responsive-modal img:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Líneas horizontales */
+.readme-responsive-modal hr {
+    border: none !important;
+    border-top: 2px solid #e2e8f0 !important;
+    margin: 2rem 0 !important;
+}
+
+/* Botón de confirmar */
+.readme-confirm-btn {
+    font-weight: 600 !important;
+    padding: 0.75rem 2rem !important;
+    border-radius: 0.75rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.readme-confirm-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Scrollbar personalizado */
+.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar {
+    width: 8px;
+}
+
+.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ============================================
+   RESPONSIVE PARA MÓVILES
+   ============================================ */
+@media (max-width: 767px) {
+    .readme-responsive-modal {
+        width: 95% !important;
+        padding: 0.75rem !important;
+    }
+    
+    .readme-responsive-modal .swal2-title {
+        font-size: 1.125rem !important;
+        padding: 0 !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .readme-responsive-modal h1 {
+        font-size: 1.25rem !important;
+    }
+    
+    .readme-responsive-modal h2 {
+        font-size: 1.125rem !important;
+    }
+    
+    .readme-responsive-modal h3 {
+        font-size: 1rem !important;
+    }
+    
+    .readme-responsive-modal pre {
+        font-size: 0.75rem !important;
+        padding: 0.75rem !important;
+    }
+    
+    .readme-responsive-modal img {
+        width: 100% !important;
+        margin: 1rem auto !important;
+    }
+    
+    .readme-confirm-btn {
+        width: 100% !important;
+        padding: 0.625rem 1rem !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+/* ============================================
+   RESPONSIVE PARA TABLETS
+   ============================================ */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .readme-responsive-modal {
+        width: 85% !important;
+    }
+    
+    .readme-responsive-modal .swal2-title {
+        font-size: 1.375rem !important;
+    }
+    
+    .readme-responsive-modal img {
+        max-width: 90% !important;
+    }
+}
