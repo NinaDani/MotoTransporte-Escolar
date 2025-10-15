@@ -1,6 +1,6 @@
 /**
  * GESTIÓN DE CONDUCTORES - MOTOTRANSPORTE SATÉLITE
- * Versión LocalStorage
+ * Versión LocalStorage - 100% RESPONSIVO
  */
 
 const Drivers = {
@@ -35,68 +35,101 @@ const Drivers = {
 
     async showForm(driver = null) {
         const isEdit = driver !== null;
+        const isMobile = window.innerWidth < 768;
 
         const { value: formValues } = await Swal.fire({
             title: isEdit ? '✏️ Editar Conductor' : '➕ Nuevo Conductor',
             html: `
-                <div style="text-align: left;">
-                    <div class="input-group">
-                        <label>CI *</label>
-                        <input id="driverCi" class="swal2-input" placeholder="Ej: 12345678-CBBA o 1234567-SC" 
-                               value="${driver ? driver.ci : ''}" ${isEdit ? 'disabled' : ''}>
-                        <small style="color: #64748b; font-size: 0.75rem;">Extensiones válidas: SC, LP, CBBA, TJA, ORU, PTS, BNI, PND, SCZ</small>
+                <div style="text-align: left; max-height: ${isMobile ? '60vh' : '70vh'}; overflow-y: auto; padding: 0.5rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">CI *</label>
+                        <input id="driverCi" type="text" 
+                               placeholder="Ej: 12345678-CBBA o 1234567-SC" 
+                               value="${driver ? driver.ci : ''}" 
+                               ${isEdit ? 'disabled' : ''}
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            Extensiones válidas: SC, LP, CBBA, TJA, ORU, PTS, BNI, PND, SCZ
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Nombre Completo *</label>
-                        <input id="driverName" class="swal2-input" placeholder="Nombre y Apellido" 
-                               value="${driver ? driver.fullName : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Nombre Completo *</label>
+                        <input id="driverName" type="text" 
+                               placeholder="Nombre y Apellido" 
+                               value="${driver ? driver.fullName : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Teléfono *</label>
-                        <input id="driverPhone" class="swal2-input" placeholder="78901234 o 69123456" 
-                               value="${driver ? driver.phone : ''}">
-                        <small style="color: #64748b; font-size: 0.75rem;">8 dígitos sin espacios (celular o fijo)</small>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Teléfono *</label>
+                        <input id="driverPhone" type="tel" 
+                               placeholder="78901234 o 69123456" 
+                               value="${driver ? driver.phone : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            8 dígitos sin espacios (celular o fijo)
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input id="driverEmail" type="email" class="swal2-input" placeholder="conductor@email.com" 
-                               value="${driver ? driver.email || '' : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Email</label>
+                        <input id="driverEmail" type="email" 
+                               placeholder="conductor@email.com" 
+                               value="${driver ? driver.email || '' : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Número de Licencia *</label>
-                        <input id="driverLicense" class="swal2-input" placeholder="Ej: A-1234567, B-12345678, PROF-1234567" 
-                               value="${driver ? driver.license : ''}">
-                        <small style="color: #64748b; font-size: 0.75rem;">Categorías: A (Motos), B (Particulares), C (Carga), PROF (Profesional)</small>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Número de Licencia *</label>
+                        <input id="driverLicense" type="text" 
+                               placeholder="Ej: A-1234567, B-12345678, PROF-1234567" 
+                               value="${driver ? driver.license : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            Categorías: A (Motos), B (Particulares), C (Carga), PROF (Profesional)
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Vencimiento de Licencia *</label>
-                        <input id="driverExpiry" type="date" class="swal2-input" 
-                               value="${driver ? driver.licenseExpiry : ''}">
-                        <small style="color: #64748b; font-size: 0.75rem;">La licencia debe estar vigente (fecha futura)</small>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Vencimiento de Licencia *</label>
+                        <input id="driverExpiry" type="date" 
+                               value="${driver ? driver.licenseExpiry : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            La licencia debe estar vigente (fecha futura)
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Estado</label>
-                        <select id="driverStatus" class="swal2-select">
+                    
+                    <div style="margin-bottom: 0.5rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Estado</label>
+                        <select id="driverStatus" 
+                                style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                             <option value="active" ${driver && driver.status === 'active' ? 'selected' : ''}>Activo</option>
                             <option value="inactive" ${driver && driver.status === 'inactive' ? 'selected' : ''}>Inactivo</option>
                         </select>
                     </div>
                 </div>
             `,
-            focusConfirm: false,
+            width: isMobile ? '95%' : '600px',
+            padding: isMobile ? '1rem' : '1.5rem',
             showCancelButton: true,
             confirmButtonText: isEdit ? '✅ Actualizar' : '💾 Guardar',
             cancelButtonText: '❌ Cancelar',
             confirmButtonColor: '#6366f1',
             cancelButtonColor: '#64748b',
-            width: '600px',
+            customClass: {
+                popup: 'form-modal-responsive',
+                confirmButton: 'btn-responsive',
+                cancelButton: 'btn-responsive'
+            },
             preConfirm: () => {
                 return {
-                    ci: document.getElementById('driverCi').value,
-                    fullName: document.getElementById('driverName').value,
-                    phone: document.getElementById('driverPhone').value,
-                    email: document.getElementById('driverEmail').value,
-                    license: document.getElementById('driverLicense').value,
+                    ci: document.getElementById('driverCi').value.trim(),
+                    fullName: document.getElementById('driverName').value.trim(),
+                    phone: document.getElementById('driverPhone').value.trim(),
+                    email: document.getElementById('driverEmail').value.trim(),
+                    license: document.getElementById('driverLicense').value.trim(),
                     licenseExpiry: document.getElementById('driverExpiry').value,
                     status: document.getElementById('driverStatus').value
                 };
@@ -119,7 +152,6 @@ const Drivers = {
             return;
         }
 
-        // Verificar CI duplicado
         const exists = this.drivers.find(d => d.ci === data.ci);
         if (exists) {
             Utils.showAlert('error', 'CI Duplicada', 'Ya existe un conductor con esta CI');
