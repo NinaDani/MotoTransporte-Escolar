@@ -1,4 +1,4 @@
-# 📦 SISTEMA COMPLETO - MOTOTRANSPORTE SATÉLITE
+# 📦 SISTEMA MOTOTRANSPORTE SATÉLITE
 
 # 🚐 Sistema de Gestión Mototransporte Satélite
 
