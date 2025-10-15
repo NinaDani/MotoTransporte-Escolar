@@ -753,3 +753,87 @@
         max-width: 90% !important;
     }
 }
+/* ============================================
+   FORMULARIOS RESPONSIVOS 100% - CRÍTICO
+   ============================================ */
+
+.form-modal-responsive {
+    max-width: 95% !important;
+    margin: 0.5rem !important;
+}
+
+.form-modal-responsive .swal2-html-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+}
+
+.form-modal-responsive .swal2-title {
+    margin-bottom: 1rem !important;
+}
+
+.btn-responsive {
+    font-size: 0.875rem !important;
+    padding: 0.75rem 1.5rem !important;
+    min-width: 100px !important;
+    font-weight: 600 !important;
+}
+
+/* Prevenir zoom automático en iOS */
+.form-modal-responsive input,
+.form-modal-responsive select,
+.form-modal-responsive textarea {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-modal-responsive input:focus,
+.form-modal-responsive select:focus,
+.form-modal-responsive textarea:focus {
+    outline: none !important;
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 767px) {
+    .form-modal-responsive {
+        width: 95% !important;
+        max-width: 95% !important;
+        margin: 0.5rem !important;
+        padding: 0.75rem !important;
+    }
+    
+    .form-modal-responsive .swal2-title {
+        font-size: 1.125rem !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0 !important;
+    }
+    
+    .form-modal-responsive .swal2-html-container {
+        max-height: 60vh !important;
+        font-size: 0.875rem !important;
+        padding: 0 !important;
+    }
+    
+    .form-modal-responsive .swal2-actions {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+    }
+    
+    .btn-responsive {
+        width: 100% !important;
+        font-size: 0.875rem !important;
+        padding: 0.75rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .form-modal-responsive {
+        width: 85% !important;
+    }
+}
