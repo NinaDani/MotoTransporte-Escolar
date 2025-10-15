@@ -1,6 +1,6 @@
 /**
  * GESTIÓN DE VEHÍCULOS - MOTOTRANSPORTE SATÉLITE
- * Versión LocalStorage
+ * Versión LocalStorage - 100% RESPONSIVO
  */
 
 const Vehicles = {
@@ -35,45 +35,71 @@ const Vehicles = {
 
     async showForm(vehicle = null) {
         const isEdit = vehicle !== null;
+        const isMobile = window.innerWidth < 768;
 
         const { value: formValues } = await Swal.fire({
             title: isEdit ? '✏️ Editar Vehículo' : '➕ Nuevo Vehículo',
             html: `
-                <div style="text-align: left;">
-                    <div class="input-group">
-                        <label>Placa *</label>
-                        <input id="vehiclePlate" class="swal2-input" placeholder="Ej: 1234ABC o 5678XYZ" 
-                               value="${vehicle ? vehicle.plate : ''}" ${isEdit ? 'disabled' : ''}>
-                        <small style="color: #64748b; font-size: 0.75rem;">Formato boliviano: 4 números + 3 letras (También acepta 3 números + 3 letras)</small>
+                <div style="text-align: left; max-height: ${isMobile ? '60vh' : '70vh'}; overflow-y: auto; padding: 0.5rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Placa *</label>
+                        <input id="vehiclePlate" type="text" 
+                               placeholder="Ej: 1234ABC o 5678XYZ" 
+                               value="${vehicle ? vehicle.plate : ''}" 
+                               ${isEdit ? 'disabled' : ''}
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            Formato boliviano: 4 números + 3 letras (También acepta 3 números + 3 letras)
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Marca *</label>
-                        <input id="vehicleBrand" class="swal2-input" placeholder="Toyota, Nissan, Hyundai..." 
-                               value="${vehicle ? vehicle.brand : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Marca *</label>
+                        <input id="vehicleBrand" type="text" 
+                               placeholder="Toyota, Nissan, Hyundai..." 
+                               value="${vehicle ? vehicle.brand : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Modelo *</label>
-                        <input id="vehicleModel" class="swal2-input" placeholder="Hiace, Urvan, H1..." 
-                               value="${vehicle ? vehicle.model : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Modelo *</label>
+                        <input id="vehicleModel" type="text" 
+                               placeholder="Hiace, Urvan, H1..." 
+                               value="${vehicle ? vehicle.model : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Año *</label>
-                        <input id="vehicleYear" type="number" class="swal2-input" placeholder="2020" 
-                               value="${vehicle ? vehicle.year : ''}" min="1990" max="${new Date().getFullYear() + 1}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Año *</label>
+                        <input id="vehicleYear" type="number" 
+                               placeholder="2020" 
+                               value="${vehicle ? vehicle.year : ''}" 
+                               min="1990" max="${new Date().getFullYear() + 1}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Capacidad (pasajeros) *</label>
-                        <input id="vehicleCapacity" type="number" class="swal2-input" placeholder="15" 
-                               value="${vehicle ? vehicle.capacity : ''}" min="1" max="50">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Capacidad (pasajeros) *</label>
+                        <input id="vehicleCapacity" type="number" 
+                               placeholder="15" 
+                               value="${vehicle ? vehicle.capacity : ''}" 
+                               min="1" max="50"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Color</label>
-                        <input id="vehicleColor" class="swal2-input" placeholder="Blanco" 
-                               value="${vehicle ? vehicle.color || '' : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Color</label>
+                        <input id="vehicleColor" type="text" 
+                               placeholder="Blanco, Azul, Rojo..." 
+                               value="${vehicle ? vehicle.color || '' : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Estado</label>
-                        <select id="vehicleStatus" class="swal2-select">
+                    
+                    <div style="margin-bottom: 0.5rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Estado</label>
+                        <select id="vehicleStatus" 
+                                style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                             <option value="available" ${vehicle && vehicle.status === 'available' ? 'selected' : ''}>Disponible</option>
                             <option value="maintenance" ${vehicle && vehicle.status === 'maintenance' ? 'selected' : ''}>Mantenimiento</option>
                             <option value="inactive" ${vehicle && vehicle.status === 'inactive' ? 'selected' : ''}>Inactivo</option>
@@ -81,20 +107,26 @@ const Vehicles = {
                     </div>
                 </div>
             `,
-            focusConfirm: false,
+            width: isMobile ? '95%' : '600px',
+            padding: isMobile ? '1rem' : '1.5rem',
             showCancelButton: true,
-            confirmButtonText: isEdit ? 'Actualizar' : 'Guardar',
-            cancelButtonText: 'Cancelar',
-            confirmButtonColor: '#2563eb',
-            width: '600px',
+            confirmButtonText: isEdit ? '✅ Actualizar' : '💾 Guardar',
+            cancelButtonText: '❌ Cancelar',
+            confirmButtonColor: '#6366f1',
+            cancelButtonColor: '#64748b',
+            customClass: {
+                popup: 'form-modal-responsive',
+                confirmButton: 'btn-responsive',
+                cancelButton: 'btn-responsive'
+            },
             preConfirm: () => {
                 return {
-                    plate: document.getElementById('vehiclePlate').value,
-                    brand: document.getElementById('vehicleBrand').value,
-                    model: document.getElementById('vehicleModel').value,
+                    plate: document.getElementById('vehiclePlate').value.trim(),
+                    brand: document.getElementById('vehicleBrand').value.trim(),
+                    model: document.getElementById('vehicleModel').value.trim(),
                     year: document.getElementById('vehicleYear').value,
                     capacity: document.getElementById('vehicleCapacity').value,
-                    color: document.getElementById('vehicleColor').value,
+                    color: document.getElementById('vehicleColor').value.trim(),
                     status: document.getElementById('vehicleStatus').value
                 };
             }
@@ -116,7 +148,6 @@ const Vehicles = {
             return;
         }
 
-        // Verificar placa duplicada
         const exists = this.vehicles.find(v => v.plate === data.plate);
         if (exists) {
             Utils.showAlert('error', 'Placa Duplicada', 'Ya existe un vehículo con esta placa');
