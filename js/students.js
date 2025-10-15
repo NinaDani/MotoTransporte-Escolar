@@ -1,6 +1,6 @@
 /**
  * GESTIÓN DE ESTUDIANTES - MOTOTRANSPORTE SATÉLITE
- * Versión LocalStorage
+ * Versión LocalStorage - 100% RESPONSIVO
  */
 
 const Students = {
@@ -43,6 +43,7 @@ const Students = {
 
     async showForm(student = null) {
         const isEdit = student !== null;
+        const isMobile = window.innerWidth < 768;
         
         const routes = Routes.routes || [];
         const routeOptions = routes.map(r => 
@@ -54,63 +55,91 @@ const Students = {
         const { value: formValues } = await Swal.fire({
             title: isEdit ? '✏️ Editar Estudiante' : '➕ Nuevo Estudiante',
             html: `
-                <div style="text-align: left;">
-                    <div class="input-group">
-                        <label>CI *</label>
-                        <input id="studentCi" class="swal2-input" placeholder="Ej: 12345678-CBBA o 1234567-SC" 
-                               value="${student ? student.ci : ''}" ${isEdit ? 'disabled' : ''}>
-                        <small style="color: #64748b; font-size: 0.75rem;">Formato: 7-8 números + extensión (SC, LP, CBBA, TJA, ORU, PTS, BNI, PND, SCZ)</small>
+                <div style="text-align: left; max-height: ${isMobile ? '60vh' : '70vh'}; overflow-y: auto; padding: 0.5rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">CI *</label>
+                        <input id="studentCi" type="text" 
+                               placeholder="Ej: 12345678-CBBA" 
+                               value="${student ? student.ci : ''}" 
+                               ${isEdit ? 'disabled' : ''}
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            Formato: 7-8 números + extensión (SC, LP, CBBA, TJA, ORU, PTS, BNI, PND, SCZ)
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Nombre Completo *</label>
-                        <input id="studentName" class="swal2-input" placeholder="Nombre y Apellido" 
-                               value="${student ? student.fullName : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Nombre Completo *</label>
+                        <input id="studentName" type="text" 
+                               placeholder="Nombre y Apellido" 
+                               value="${student ? student.fullName : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Fecha de Nacimiento *</label>
-                        <input id="studentBirth" type="date" class="swal2-input" 
-                               value="${student ? student.birthDate : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Fecha de Nacimiento *</label>
+                        <input id="studentBirth" type="date" 
+                               value="${student ? student.birthDate : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Dirección *</label>
-                        <input id="studentAddress" class="swal2-input" placeholder="Dirección completa" 
-                               value="${student ? student.address : ''}">
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Dirección *</label>
+                        <input id="studentAddress" type="text" 
+                               placeholder="Dirección completa" 
+                               value="${student ? student.address : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Teléfono de Contacto *</label>
-                        <input id="studentPhone" class="swal2-input" placeholder="78901234 o 69123456" 
-                               value="${student ? student.phone : ''}">
-                        <small style="color: #64748b; font-size: 0.75rem;">8 dígitos sin espacios (celular o fijo)</small>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Teléfono de Contacto *</label>
+                        <input id="studentPhone" type="tel" 
+                               placeholder="78901234 o 69123456" 
+                               value="${student ? student.phone : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
+                        <small style="color: #64748b; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            8 dígitos sin espacios (celular o fijo)
+                        </small>
                     </div>
-                    <div class="input-group">
-                        <label>Email de Padres</label>
-                        <input id="studentEmail" type="email" class="swal2-input" 
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Email de Padres</label>
+                        <input id="studentEmail" type="email" 
                                placeholder="padres@email.com" 
-                               value="${student ? student.parentEmail || '' : ''}">
+                               value="${student ? student.parentEmail || '' : ''}"
+                               style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                     </div>
-                    <div class="input-group">
-                        <label>Ruta Asignada</label>
-                        <select id="studentRoute" class="swal2-select">
+                    
+                    <div style="margin-bottom: 0.5rem;">
+                        <label style="display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.875rem;">Ruta Asignada</label>
+                        <select id="studentRoute" 
+                                style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; font-size: 16px; box-sizing: border-box;">
                             <option value="">Sin asignar</option>
                             ${routeOptions}
                         </select>
                     </div>
                 </div>
             `,
-            focusConfirm: false,
+            width: isMobile ? '95%' : '600px',
+            padding: isMobile ? '1rem' : '1.5rem',
             showCancelButton: true,
-            confirmButtonText: isEdit ? 'Actualizar' : 'Guardar',
-            cancelButtonText: 'Cancelar',
-            confirmButtonColor: '#2563eb',
-            width: '600px',
+            confirmButtonText: isEdit ? '✅ Actualizar' : '💾 Guardar',
+            cancelButtonText: '❌ Cancelar',
+            confirmButtonColor: '#6366f1',
+            cancelButtonColor: '#64748b',
+            customClass: {
+                popup: 'form-modal-responsive',
+                confirmButton: 'btn-responsive',
+                cancelButton: 'btn-responsive'
+            },
             preConfirm: () => {
                 return {
-                    ci: document.getElementById('studentCi').value,
-                    fullName: document.getElementById('studentName').value,
+                    ci: document.getElementById('studentCi').value.trim(),
+                    fullName: document.getElementById('studentName').value.trim(),
                     birthDate: document.getElementById('studentBirth').value,
-                    address: document.getElementById('studentAddress').value,
-                    phone: document.getElementById('studentPhone').value,
-                    parentEmail: document.getElementById('studentEmail').value,
+                    address: document.getElementById('studentAddress').value.trim(),
+                    phone: document.getElementById('studentPhone').value.trim(),
+                    parentEmail: document.getElementById('studentEmail').value.trim(),
                     routeId: document.getElementById('studentRoute').value
                 };
             }
@@ -132,7 +161,6 @@ const Students = {
             return;
         }
 
-        // Verificar CI duplicado
         const exists = this.students.find(s => s.ci === data.ci);
         if (exists) {
             Utils.showAlert('error', 'CI Duplicada', 'Ya existe un estudiante con esta CI');
