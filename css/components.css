@@ -754,39 +754,48 @@
     }
 }
 /* ============================================
-   FORMULARIOS RESPONSIVOS 100% - CRÍTICO
+   FORMULARIOS RESPONSIVOS 100% - FORZADO
    ============================================ */
 
-.form-modal-responsive {
-    max-width: 95% !important;
-    margin: 0.5rem !important;
+/* FORZAR WIDTH EN MÓVIL */
+.form-modal-responsive.swal2-popup {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    margin: 0.5rem auto !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
 }
 
 .form-modal-responsive .swal2-html-container {
     padding: 0 !important;
     margin: 0 !important;
-    max-height: 70vh !important;
+    max-height: 65vh !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
 
 .form-modal-responsive .swal2-title {
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    font-size: 1.25rem !important;
+    padding: 0 0.5rem !important;
 }
 
 .btn-responsive {
-    font-size: 0.875rem !important;
-    padding: 0.75rem 1.5rem !important;
-    min-width: 100px !important;
+    font-size: 0.9rem !important;
+    padding: 0.75rem 1.25rem !important;
+    min-width: 90px !important;
     font-weight: 600 !important;
 }
 
-/* Prevenir zoom automático en iOS */
+/* PREVENIR ZOOM EN iOS */
 .form-modal-responsive input,
 .form-modal-responsive select,
 .form-modal-responsive textarea {
     font-size: 16px !important;
-    -webkit-appearance: none;
-    appearance: none;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .form-modal-responsive input:focus,
@@ -797,43 +806,92 @@
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
 }
 
-/* RESPONSIVE MÓVIL */
+/* LABELS Y SMALL */
+.form-modal-responsive label {
+    font-size: 0.875rem !important;
+}
+
+.form-modal-responsive small {
+    font-size: 0.75rem !important;
+}
+
+/* ============================================
+   RESPONSIVE MÓVIL (CRÍTICO)
+   ============================================ */
 @media (max-width: 767px) {
-    .form-modal-responsive {
-        width: 95% !important;
-        max-width: 95% !important;
+    /* FORZAR ANCHO COMPLETO */
+    .swal2-container.swal2-center {
+        padding: 0.5rem !important;
+    }
+    
+    .form-modal-responsive.swal2-popup {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        min-width: calc(100vw - 1rem) !important;
         margin: 0.5rem !important;
         padding: 0.75rem !important;
     }
     
     .form-modal-responsive .swal2-title {
-        font-size: 1.125rem !important;
-        margin-bottom: 0.75rem !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
         padding: 0 !important;
+        line-height: 1.3 !important;
     }
     
     .form-modal-responsive .swal2-html-container {
         max-height: 60vh !important;
         font-size: 0.875rem !important;
         padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .form-modal-responsive .swal2-html-container > div {
+        padding: 0.25rem !important;
     }
     
     .form-modal-responsive .swal2-actions {
         flex-direction: column !important;
         gap: 0.5rem !important;
         width: 100% !important;
-        margin-top: 1rem !important;
+        margin: 0.75rem 0 0 0 !important;
+        padding: 0 !important;
     }
     
     .btn-responsive {
         width: 100% !important;
         font-size: 0.875rem !important;
-        padding: 0.75rem !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0 !important;
+    }
+    
+    /* INPUTS Y SELECTS EN MÓVIL */
+    .form-modal-responsive input,
+    .form-modal-responsive select,
+    .form-modal-responsive textarea {
+        padding: 0.65rem !important;
+        font-size: 16px !important;
+        border-width: 1px !important;
+    }
+    
+    /* ESPACIADO ENTRE CAMPOS */
+    .form-modal-responsive [style*="margin-bottom: 1rem"] {
+        margin-bottom: 0.75rem !important;
     }
 }
 
+/* TABLET */
 @media (min-width: 768px) and (max-width: 1023px) {
-    .form-modal-responsive {
-        width: 85% !important;
+    .form-modal-responsive.swal2-popup {
+        width: 85vw !important;
+        max-width: 600px !important;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    .form-modal-responsive.swal2-popup {
+        width: 600px !important;
+        max-width: 600px !important;
     }
 }
