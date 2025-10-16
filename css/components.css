@@ -485,21 +485,23 @@
 .tooltip:hover::after {
     opacity: 1;
 }
+
 /* ============================================
-   MODAL README - RESPONSIVO 100%
+   MODAL README - RESPONSIVO MEJORADO
    ============================================ */
 
 .readme-responsive-modal.swal2-popup {
-    width: calc(100vw - 1rem) !important;
+    width: calc(100vw - 2rem) !important;
     max-width: 900px !important;
-    margin: 0.5rem auto !important;
+    margin: 1rem auto !important;
     box-sizing: border-box !important;
+    padding: 1.5rem !important;
 }
 
 .readme-responsive-modal .swal2-html-container {
     margin: 0 !important;
     padding: 0 !important;
-    max-height: 70vh !important;
+    max-height: 65vh !important;
     overflow-y: auto !important;
 }
 
@@ -538,7 +540,6 @@
     color: inherit !important;
 }
 
-/* Estilos para imágenes */
 .readme-responsive-modal img {
     max-width: 100% !important;
     height: auto !important;
@@ -554,122 +555,39 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Líneas horizontales */
 .readme-responsive-modal hr {
     border: none !important;
     border-top: 2px solid #e2e8f0 !important;
     margin: 2rem 0 !important;
 }
 
-/* Scrollbar personalizado */
-.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar {
+.readme-responsive-modal .swal2-html-container::-webkit-scrollbar {
     width: 8px;
 }
 
-.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-track {
+.readme-responsive-modal .swal2-html-container::-webkit-scrollbar-track {
     background: #f1f5f9;
     border-radius: 4px;
 }
 
-.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-thumb {
+.readme-responsive-modal .swal2-html-container::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 4px;
 }
 
-.readme-responsive-modal .swal2-html-container > div::-webkit-scrollbar-thumb:hover {
+.readme-responsive-modal .swal2-html-container::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
 
 /* ============================================
-   RESPONSIVE MÓVIL
-   ============================================ */
-@media (max-width: 767px) {
-    .readme-responsive-modal.swal2-popup {
-        width: calc(100vw - 1rem) !important;
-        max-width: calc(100vw - 1rem) !important;
-        min-width: calc(100vw - 1rem) !important;
-        padding: 0.75rem !important;
-        margin: 0.5rem !important;
-    }
-    
-    .readme-responsive-modal .swal2-title {
-        font-size: 1rem !important;
-        padding: 0 !important;
-        margin-bottom: 0.75rem !important;
-    }
-    
-    .readme-responsive-modal h1 {
-        font-size: 1.25rem !important;
-    }
-    
-    .readme-responsive-modal h2 {
-        font-size: 1.125rem !important;
-    }
-    
-    .readme-responsive-modal h3 {
-        font-size: 1rem !important;
-    }
-    
-    .readme-responsive-modal pre {
-        font-size: 0.75rem !important;
-        padding: 0.75rem !important;
-    }
-    
-    .readme-responsive-modal img {
-        width: 100% !important;
-        margin: 1rem auto !important;
-    }
-    
-    .readme-responsive-modal .swal2-html-container {
-        max-height: 60vh !important;
-        font-size: 0.875rem !important;
-    }
-    
-    .readme-responsive-modal .swal2-actions {
-        width: 100% !important;
-        margin-top: 0.75rem !important;
-    }
-    
-    .readme-responsive-modal .btn-responsive {
-        width: 100% !important;
-        padding: 0.75rem 1rem !important;
-        font-size: 0.875rem !important;
-    }
-}
-
-/* TABLET */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .readme-responsive-modal.swal2-popup {
-        width: 85vw !important;
-        max-width: 85vw !important;
-    }
-    
-    .readme-responsive-modal .swal2-title {
-        font-size: 1.375rem !important;
-    }
-    
-    .readme-responsive-modal img {
-        max-width: 90% !important;
-    }
-}
-
-/* DESKTOP */
-@media (min-width: 1024px) {
-    .readme-responsive-modal.swal2-popup {
-        width: 900px !important;
-        max-width: 900px !important;
-    }
-}
-/* ============================================
-   FORMULARIOS RESPONSIVOS 100% - FORZADO
+   FORMULARIOS RESPONSIVOS - MEJORADO
    ============================================ */
 
-/* FORZAR WIDTH EN MÓVIL */
 .form-modal-responsive.swal2-popup {
-    width: 95vw !important;
-    max-width: 95vw !important;
-    margin: 0.5rem auto !important;
-    padding: 1rem !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: 600px !important;
+    margin: 1rem auto !important;
+    padding: 1.5rem !important;
     box-sizing: border-box !important;
 }
 
@@ -682,19 +600,18 @@
 }
 
 .form-modal-responsive .swal2-title {
-    margin-bottom: 0.75rem !important;
-    font-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.5rem !important;
     padding: 0 0.5rem !important;
 }
 
 .btn-responsive {
-    font-size: 0.9rem !important;
-    padding: 0.75rem 1.25rem !important;
-    min-width: 90px !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1.5rem !important;
+    min-width: 100px !important;
     font-weight: 600 !important;
 }
 
-/* PREVENIR ZOOM EN iOS */
 .form-modal-responsive input,
 .form-modal-responsive select,
 .form-modal-responsive textarea {
@@ -713,41 +630,127 @@
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
 }
 
-/* LABELS Y SMALL */
 .form-modal-responsive label {
-    font-size: 0.875rem !important;
+    font-size: 0.9rem !important;
 }
 
 .form-modal-responsive small {
-    font-size: 0.75rem !important;
+    font-size: 0.8rem !important;
 }
 
 /* ============================================
-   RESPONSIVE MÓVIL (CRÍTICO)
+   RESPONSIVE MÓVIL - CRÍTICO
    ============================================ */
 @media (max-width: 767px) {
-    /* FORZAR ANCHO COMPLETO */
+    /* Contenedor SweetAlert */
     .swal2-container.swal2-center {
         padding: 0.5rem !important;
     }
     
+    /* ===== MODAL README ===== */
+    .readme-responsive-modal.swal2-popup {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        min-width: calc(100vw - 1rem) !important;
+        padding: 1rem !important;
+        margin: 0.5rem !important;
+    }
+    
+    .readme-responsive-modal .swal2-title {
+        font-size: 1.125rem !important;
+        padding: 0 !important;
+        margin-bottom: 0.75rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .readme-responsive-modal .swal2-html-container {
+        max-height: 55vh !important;
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    .readme-responsive-modal h1 {
+        font-size: 1.25rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .readme-responsive-modal h2 {
+        font-size: 1.125rem !important;
+        margin-top: 0.875rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .readme-responsive-modal h3 {
+        font-size: 1rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .readme-responsive-modal p {
+        font-size: 0.875rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .readme-responsive-modal ul,
+    .readme-responsive-modal ol {
+        padding-left: 1.25rem !important;
+        margin: 0.5rem 0 !important;
+        font-size: 0.875rem !important;
+    }
+    
+    .readme-responsive-modal li {
+        margin-bottom: 0.5rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .readme-responsive-modal pre {
+        font-size: 0.75rem !important;
+        padding: 0.75rem !important;
+        margin: 0.75rem 0 !important;
+        border-radius: 0.5rem !important;
+    }
+    
+    .readme-responsive-modal code {
+        font-size: 0.8rem !important;
+    }
+    
+    .readme-responsive-modal img {
+        width: 100% !important;
+        margin: 1rem 0 !important;
+        border-radius: 0.5rem !important;
+    }
+    
+    .readme-responsive-modal hr {
+        margin: 1rem 0 !important;
+    }
+    
+    .readme-responsive-modal .swal2-close {
+        font-size: 1.75rem !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        top: 0.25rem !important;
+        right: 0.25rem !important;
+    }
+    
+    /* ===== FORMULARIOS ===== */
     .form-modal-responsive.swal2-popup {
         width: calc(100vw - 1rem) !important;
         max-width: calc(100vw - 1rem) !important;
         min-width: calc(100vw - 1rem) !important;
         margin: 0.5rem !important;
-        padding: 0.75rem !important;
+        padding: 1rem !important;
     }
     
     .form-modal-responsive .swal2-title {
-        font-size: 1rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.125rem !important;
+        margin-bottom: 0.75rem !important;
         padding: 0 !important;
         line-height: 1.3 !important;
     }
     
     .form-modal-responsive .swal2-html-container {
-        max-height: 60vh !important;
+        max-height: 55vh !important;
         font-size: 0.875rem !important;
         padding: 0 !important;
         margin: 0 !important;
@@ -772,7 +775,6 @@
         margin: 0 !important;
     }
     
-    /* INPUTS Y SELECTS EN MÓVIL */
     .form-modal-responsive input,
     .form-modal-responsive select,
     .form-modal-responsive textarea {
@@ -781,36 +783,55 @@
         border-width: 1px !important;
     }
     
-    /* ESPACIADO ENTRE CAMPOS */
-    .form-modal-responsive [style*="margin-bottom: 1rem"] {
+    .form-modal-responsive label {
+        font-size: 0.875rem !important;
+        display: block !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .form-modal-responsive small {
+        font-size: 0.75rem !important;
+    }
+    
+    .form-modal-responsive [style*="margin-bottom"] {
         margin-bottom: 0.75rem !important;
     }
 }
 
 /* TABLET */
 @media (min-width: 768px) and (max-width: 1023px) {
+    .readme-responsive-modal.swal2-popup,
     .form-modal-responsive.swal2-popup {
-        width: 85vw !important;
-        max-width: 600px !important;
+        width: 90vw !important;
+        max-width: 90vw !important;
+        padding: 1.25rem !important;
+    }
+    
+    .readme-responsive-modal .swal2-html-container,
+    .form-modal-responsive .swal2-html-container {
+        max-height: 60vh !important;
     }
 }
 
 /* DESKTOP */
 @media (min-width: 1024px) {
+    .readme-responsive-modal.swal2-popup {
+        width: 900px !important;
+        max-width: 900px !important;
+        padding: 2rem !important;
+    }
+    
     .form-modal-responsive.swal2-popup {
         width: 600px !important;
         max-width: 600px !important;
-    }
-}
-/* OVERRIDE ABSOLUTO PARA SWAL2 EN MÓVIL */
-@media (max-width: 767px) {
-    .swal2-popup {
-        width: calc(100vw - 1rem) !important;
-        max-width: calc(100vw - 1rem) !important;
+        padding: 2rem !important;
     }
     
-    .swal2-popup.form-modal-responsive {
-        width: calc(100vw - 1rem) !important;
-        max-width: calc(100vw - 1rem) !important;
+    .readme-responsive-modal .swal2-html-container {
+        max-height: 70vh !important;
+    }
+    
+    .form-modal-responsive .swal2-html-container {
+        max-height: 70vh !important;
     }
 }
