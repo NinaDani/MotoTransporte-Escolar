@@ -225,6 +225,145 @@ const App = {
     },
 
     /**
+     * Configura el botón README con modal RESPONSIVO TOTAL
+     */
+    setupReadmeButton() {
+        const readmeBtn = document.getElementById("readmeBtn");
+        if (!readmeBtn) return;
+        
+        readmeBtn.addEventListener("click", async () => {
+            try {
+                const response = await fetch("README.md");
+                const markdownText = await response.text();
+                
+                // Detectar dispositivo
+                const isMobile = window.innerWidth < 768;
+                const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+                
+                // Convertir Markdown a HTML
+                let html = markdownText
+                    // Bloques de código
+                    .replace(/```([\s\S]*?)```/gim, (match, code) => {
+                        return `<pre style="background:#1e293b; color:#e2e8f0; padding:${isMobile ? '0.75rem' : '1rem'}; border-radius:0.5rem; overflow-x:auto; font-size:${isMobile ? '0.75rem' : '0.875rem'}; line-height:1.6; margin:1rem 0; white-space:pre-wrap; word-wrap:break-word;"><code>${code.trim()}</code></pre>`;
+                    })
+                    // Imágenes Markdown ![alt](url)
+                    .replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, 
+                        `<img src="$2" alt="$1" style="max-width:100%; height:auto; border-radius:0.75rem; margin:1rem auto; display:block; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />`)
+                    // Imágenes HTML
+                    .replace(/<img\s+src="([^"]+)"\s+alt="([^"]*)"\s+width="(\d+)"\s*\/?>/gim,
+                        `<img src="$1" alt="$2" style="max-width:100%; height:auto; border-radius:0.75rem; margin:1rem auto; display:block; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />`)
+                    // Títulos
+                    .replace(/^### (.*$)/gim, `<h3 style="color:#6366f1; margin-top:${isMobile ? '1rem' : '1.5rem'}; margin-bottom:0.75rem; font-size:${isMobile ? '1rem' : '1.125rem'}; font-weight:600;">$1</h3>`)
+                    .replace(/^## (.*$)/gim, `<h2 style="color:#4f46e5; margin-top:${isMobile ? '1.5rem' : '2rem'}; margin-bottom:1rem; font-size:${isMobile ? '1.125rem' : '1.5rem'}; font-weight:700;">$1</h2>`)
+                    .replace(/^# (.*$)/gim, `<h1 style="color:#4338ca; margin-bottom:1.5rem; font-size:${isMobile ? '1.25rem' : '1.875rem'}; font-weight:700;">$1</h1>`)
+                    // Negritas y cursivas
+                    .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#1e293b; font-weight:600;">$1</strong>')
+                    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                    // Código inline
+                    .replace(/`([^`]+)`/gim, `<code style="background:#f1f5f9; padding:0.125rem 0.375rem; border-radius:0.25rem; font-size:${isMobile ? '0.8rem' : '0.875rem'}; color:#6366f1; font-family:monospace;">$1</code>`)
+                    // Listas
+                    .replace(/^- (.*$)/gim, '<li style="margin-left:1.5rem; margin-bottom:0.5rem; list-style-type:disc;">$1</li>')
+                    .replace(/^\d+\. (.*$)/gim, '<li style="margin-left:1.5rem; margin-bottom:0.5rem; list-style-type:decimal;">$1</li>')
+                    // Líneas horizontales
+                    .replace(/^---$/gim, '<hr style="border:none; border-top:2px solid #e2e8f0; margin:2rem 0;" />')
+                    // Saltos de línea
+                    .replace(/\n\n/gim, '<br>');
+                
+                // CONFIGURACIÓN RESPONSIVA
+                let width = '90vw';
+                let maxWidth = '900px';
+                let padding = '1.5rem';
+                let maxHeight = '70vh';
+                let fontSize = '1rem';
+                let titleSize = '1.5rem';
+                
+                if (isMobile) {
+                    width = 'calc(100vw - 1rem)';
+                    maxWidth = 'calc(100vw - 1rem)';
+                    padding = '1rem';
+                    maxHeight = '60vh';
+                    fontSize = '0.875rem';
+                    titleSize = '1.125rem';
+                } else if (isTablet) {
+                    width = '85vw';
+                    maxWidth = '85vw';
+                    padding = '1.25rem';
+                    maxHeight = '65vh';
+                }
+                
+                Swal.fire({
+                    title: `<h2 style="color:#6366f1; font-weight:700; margin:0; font-size:${titleSize};">📘 Documentación del Sistema</h2>`,
+                    html: `
+                        <div style="
+                            text-align:left; 
+                            background:#f8fafc; 
+                            border-radius:0.75rem; 
+                            padding:${padding}; 
+                            max-height:${maxHeight}; 
+                            overflow-y:auto; 
+                            overflow-x:hidden;
+                            box-shadow:inset 0 0 8px rgba(0,0,0,0.08);
+                            font-family:'Poppins', sans-serif;
+                            color:#1e293b;
+                            line-height:1.7;
+                            font-size:${fontSize};
+                            word-wrap:break-word;
+                            box-sizing:border-box;
+                        ">
+                            ${html}
+                        </div>
+                    `,
+                    width: width,
+                    padding: padding,
+                    showConfirmButton: true,
+                    confirmButtonText: '✅ Cerrar',
+                    confirmButtonColor: '#6366f1',
+                    background: '#ffffff',
+                    allowOutsideClick: true,
+                    customClass: {
+                        popup: 'readme-responsive-modal',
+                        container: 'swal2-container-custom',
+                        confirmButton: 'btn-responsive'
+                    },
+                    didOpen: () => {
+                        // Forzar posición correcta
+                        const popup = Swal.getPopup();
+                        if (popup) {
+                            popup.style.maxWidth = maxWidth;
+                            popup.style.margin = '0.5rem auto';
+                            popup.style.position = 'relative';
+                            popup.style.left = 'auto';
+                            popup.style.right = 'auto';
+                            popup.style.transform = 'none';
+                        }
+                        
+                        // Prevenir scroll horizontal
+                        document.body.style.overflowX = 'hidden';
+                        document.documentElement.style.overflowX = 'hidden';
+                    },
+                    willClose: () => {
+                        // Restaurar scroll
+                        document.body.style.overflowX = '';
+                        document.documentElement.style.overflowX = '';
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error al cargar README:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo cargar el archivo README.md',
+                    confirmButtonColor: '#6366f1',
+                    customClass: {
+                        popup: 'form-modal-responsive'
+                    }
+                });
+            }
+        });
+    },
+
+    /**
      * Busca en todas las secciones
      */
     globalSearch(term) {
@@ -301,102 +440,3 @@ window.addEventListener('beforeunload', (e) => {
 
 // Exportar para uso global
 window.App = App;
-// ============================================
-// MOSTRAR README CON IMÁGENES Y RESPONSIVE
-// ============================================
-document.addEventListener("DOMContentLoaded", () => {
-    const readmeBtn = document.getElementById("readmeBtn");
-    if (readmeBtn) {
-        readmeBtn.addEventListener("click", async () => {
-            try {
-                const response = await fetch("README.md");
-                const markdownText = await response.text();
-                
-                // Detectar dispositivo
-                const isMobile = window.innerWidth < 768;
-                
-                // Convertir bloques de código ```
-                let htmlFormatted = markdownText.replace(/```([\s\S]*?)```/gim, (match, code) => {
-                    return `<pre style="background:#1e293b; color:#e2e8f0; padding:${isMobile ? '0.75rem' : '1rem'}; border-radius:0.5rem; overflow-x:auto; font-size:${isMobile ? '0.75rem' : '0.875rem'}; line-height:1.6; margin:1rem 0; white-space:pre-wrap;"><code>${code.trim()}</code></pre>`;
-                });
-                
-                // Convertir imágenes Markdown ![alt](url)
-                htmlFormatted = htmlFormatted.replace(
-                    /!\[([^\]]*)\]\(([^)]+)\)/gim,
-                    `<img src="$2" alt="$1" style="max-width:100%; height:auto; border-radius:0.75rem; margin:1.5rem auto; display:block; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />`
-                );
-                
-                // Convertir imágenes HTML <img src="..." />
-                htmlFormatted = htmlFormatted.replace(
-                    /<img\s+src="([^"]+)"\s+alt="([^"]*)"\s+width="(\d+)"\s*\/?>/gim,
-                    `<img src="$1" alt="$2" style="max-width:100%; width:$3px; height:auto; border-radius:0.75rem; margin:1.5rem auto; display:block; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />`
-                );
-                
-                // Convertir títulos
-                htmlFormatted = htmlFormatted
-                    .replace(/^### (.*$)/gim, `<h3 style="color:#6366f1; margin-top:${isMobile ? '1rem' : '1.5rem'}; margin-bottom:0.75rem; font-size:${isMobile ? '1rem' : '1.125rem'}; font-weight:600;">$1</h3>`)
-                    .replace(/^## (.*$)/gim, `<h2 style="color:#4f46e5; margin-top:${isMobile ? '1.5rem' : '2rem'}; margin-bottom:1rem; font-size:${isMobile ? '1.125rem' : '1.5rem'}; font-weight:700;">$1</h2>`)
-                    .replace(/^# (.*$)/gim, `<h1 style="color:#4338ca; margin-bottom:1.5rem; font-size:${isMobile ? '1.25rem' : '1.875rem'}; font-weight:700;">$1</h1>`);
-                
-                // Convertir negritas, cursivas y código inline
-                htmlFormatted = htmlFormatted
-                    .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#1e293b; font-weight:600;">$1</strong>')
-                    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-                    .replace(/`([^`]+)`/gim, `<code style="background:#f1f5f9; padding:0.125rem 0.375rem; border-radius:0.25rem; font-size:${isMobile ? '0.8rem' : '0.875rem'}; color:#6366f1; font-family:monospace;">$1</code>`);
-                
-                // Convertir listas
-                htmlFormatted = htmlFormatted
-                    .replace(/^- (.*$)/gim, '<li style="margin-left:1.5rem; margin-bottom:0.5rem; list-style-type:disc;">$1</li>')
-                    .replace(/^\d+\. (.*$)/gim, '<li style="margin-left:1.5rem; margin-bottom:0.5rem; list-style-type:decimal;">$1</li>');
-                
-                // Convertir líneas horizontales
-                htmlFormatted = htmlFormatted.replace(/^---$/gim, '<hr style="border:none; border-top:2px solid #e2e8f0; margin:2rem 0;" />');
-                
-                // Convertir <br>
-                htmlFormatted = htmlFormatted.replace(/<br>/gim, '<br style="margin:0.5rem 0;" />');
-                
-                // Convertir saltos de línea
-                htmlFormatted = htmlFormatted.replace(/\n\n/gim, '<br>');
-                
-                Swal.fire({
-                    title: `<h2 style="color:#6366f1; font-weight:700; margin-bottom:0.75rem; font-size:${isMobile ? '1.125rem' : '1.5rem'};">📘 Documentación del Sistema</h2>`,
-                    html: `
-                        <div style="
-                            text-align:left; 
-                            background:#f8fafc; 
-                            border-radius:0.75rem; 
-                            padding:${isMobile ? '0.75rem' : '1.5rem'}; 
-                            max-height:${isMobile ? '60vh' : '70vh'}; 
-                            overflow-y:auto; 
-                            overflow-x:auto;
-                            box-shadow:inset 0 0 8px rgba(0,0,0,0.08);
-                            font-family:'Poppins', 'Segoe UI', sans-serif;
-                            color:#1e293b;
-                            line-height:1.7;
-                            font-size:${isMobile ? '0.875rem' : '1rem'};
-                        ">
-                            ${htmlFormatted}
-                        </div>
-                    `,
-                    width: '100%',
-                    padding: isMobile ? '0.75rem' : '1.5rem',
-                    showConfirmButton: true,
-                    confirmButtonText: '✅ Cerrar',
-                    confirmButtonColor: '#6366f1',
-                    background: '#ffffff',
-                    customClass: {
-                        popup: 'readme-responsive-modal',
-                        confirmButton: 'btn-responsive'
-                    }
-                });
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error al cargar README',
-                    text: 'No se pudo cargar el archivo README.md',
-                    confirmButtonColor: '#6366f1'
-                });
-            }
-        });
-    }
-});
