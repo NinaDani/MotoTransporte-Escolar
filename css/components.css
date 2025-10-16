@@ -835,3 +835,319 @@
         max-height: 70vh !important;
     }
 }
+/* ============================================
+   FIX CRÍTICO - MODALES SIN OVERFLOW HORIZONTAL
+   ============================================ */
+
+/* PREVENIR SCROLL HORIZONTAL EN TODA LA PÁGINA */
+html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    position: relative !important;
+}
+
+/* FORZAR CONTENEDOR SWAL2 */
+.swal2-container {
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+.swal2-container.swal2-center {
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* ============================================
+   MODALES RESPONSIVOS - FIX TOTAL
+   ============================================ */
+
+/* Modal README */
+.readme-responsive-modal.swal2-popup {
+    width: calc(100vw - 2rem) !important;
+    max-width: 900px !important;
+    margin: 1rem !important;
+    box-sizing: border-box !important;
+    padding: 1.5rem !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+}
+
+/* Modal Formularios */
+.form-modal-responsive.swal2-popup {
+    width: calc(100vw - 2rem) !important;
+    max-width: 600px !important;
+    margin: 1rem !important;
+    padding: 1.5rem !important;
+    box-sizing: border-box !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+}
+
+/* CONTENIDO DE MODALES */
+.readme-responsive-modal .swal2-html-container,
+.form-modal-responsive .swal2-html-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: 65vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* ============================================
+   MÓVIL - FIX AGRESIVO
+   ============================================ */
+@media (max-width: 767px) {
+    /* CONTENEDOR PRINCIPAL */
+    .swal2-container {
+        padding: 0.5rem !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* OVERLAY/BACKDROP */
+    .swal2-container::before {
+        display: none !important;
+    }
+    
+    /* ===== README MODAL ===== */
+    .readme-responsive-modal.swal2-popup {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        min-width: calc(100vw - 1rem) !important;
+        margin: 0.5rem auto !important;
+        padding: 1rem !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+    }
+    
+    .readme-responsive-modal .swal2-title {
+        font-size: 1.125rem !important;
+        padding: 0 !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .readme-responsive-modal .swal2-html-container {
+        max-height: 55vh !important;
+        font-size: 0.875rem !important;
+        overflow-x: hidden !important;
+        word-wrap: break-word !important;
+    }
+    
+    .readme-responsive-modal h1 { font-size: 1.25rem !important; }
+    .readme-responsive-modal h2 { font-size: 1.125rem !important; }
+    .readme-responsive-modal h3 { font-size: 1rem !important; }
+    .readme-responsive-modal p { font-size: 0.875rem !important; }
+    
+    .readme-responsive-modal pre {
+        font-size: 0.75rem !important;
+        overflow-x: auto !important;
+        max-width: 100% !important;
+    }
+    
+    .readme-responsive-modal code {
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    .readme-responsive-modal img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* ===== FORMULARIOS MODAL ===== */
+    .form-modal-responsive.swal2-popup {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        min-width: calc(100vw - 1rem) !important;
+        margin: 0.5rem auto !important;
+        padding: 1rem !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+    
+    .form-modal-responsive .swal2-title {
+        font-size: 1.125rem !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0 !important;
+        word-wrap: break-word !important;
+    }
+    
+    .form-modal-responsive .swal2-html-container {
+        max-height: 55vh !important;
+        font-size: 0.875rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* INPUTS EN FORMULARIO */
+    .form-modal-responsive input,
+    .form-modal-responsive select,
+    .form-modal-responsive textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.75rem !important;
+        font-size: 16px !important;
+        box-sizing: border-box !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 0.5rem !important;
+    }
+    
+    .form-modal-responsive input:focus,
+    .form-modal-responsive select:focus,
+    .form-modal-responsive textarea:focus {
+        outline: none !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+    }
+    
+    /* LABELS Y TEXTOS */
+    .form-modal-responsive label {
+        display: block !important;
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.375rem !important;
+        color: #374151 !important;
+    }
+    
+    .form-modal-responsive small {
+        font-size: 0.75rem !important;
+        color: #6b7280 !important;
+        display: block !important;
+        margin-top: 0.25rem !important;
+    }
+    
+    /* GRUPOS DE INPUTS */
+    .form-modal-responsive .input-group,
+    .form-modal-responsive div[style*="margin-bottom"] {
+        margin-bottom: 0.875rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* BOTONES */
+    .form-modal-responsive .swal2-actions {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        margin: 1rem 0 0 0 !important;
+        padding: 0 !important;
+    }
+    
+    .form-modal-responsive .swal2-confirm,
+    .form-modal-responsive .swal2-cancel,
+    .form-modal-responsive .btn-responsive {
+        width: 100% !important;
+        font-size: 0.9rem !important;
+        padding: 0.875rem 1rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* BOTÓN CERRAR */
+    .readme-responsive-modal .swal2-close,
+    .form-modal-responsive .swal2-close {
+        font-size: 1.75rem !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+        color: #6b7280 !important;
+    }
+    
+    /* PREVENIR ELEMENTOS QUE SE SALGAN */
+    .form-modal-responsive *,
+    .readme-responsive-modal * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .form-modal-responsive table,
+    .readme-responsive-modal table {
+        width: 100% !important;
+        display: block !important;
+        overflow-x: auto !important;
+    }
+}
+
+/* ============================================
+   TABLET
+   ============================================ */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .readme-responsive-modal.swal2-popup {
+        width: 90vw !important;
+        max-width: 90vw !important;
+    }
+    
+    .form-modal-responsive.swal2-popup {
+        width: 85vw !important;
+        max-width: 600px !important;
+    }
+}
+
+/* ============================================
+   DESKTOP
+   ============================================ */
+@media (min-width: 1024px) {
+    .readme-responsive-modal.swal2-popup {
+        width: 900px !important;
+        max-width: 900px !important;
+    }
+    
+    .form-modal-responsive.swal2-popup {
+        width: 600px !important;
+        max-width: 600px !important;
+    }
+}
+
+/* ============================================
+   FIX PARA CUALQUIER MODAL DE SWAL2
+   ============================================ */
+@media (max-width: 767px) {
+    .swal2-popup {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+        margin: 0.5rem auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    .swal2-popup * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .swal2-input,
+    .swal2-select,
+    .swal2-textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 16px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .swal2-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.5rem !important;
+    }
+    
+    .swal2-confirm,
+    .swal2-cancel {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
