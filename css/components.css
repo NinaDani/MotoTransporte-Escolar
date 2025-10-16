@@ -895,3 +895,15 @@
         max-width: 600px !important;
     }
 }
+/* OVERRIDE ABSOLUTO PARA SWAL2 EN MÓVIL */
+@media (max-width: 767px) {
+    .swal2-popup {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+    }
+    
+    .swal2-popup.form-modal-responsive {
+        width: calc(100vw - 1rem) !important;
+        max-width: calc(100vw - 1rem) !important;
+    }
+}
