@@ -107,7 +107,7 @@ const Vehicles = {
                     </div>
                 </div>
             `,
-            width: isMobile ? '95%' : '600px',
+           width: '100%',
             padding: isMobile ? '1rem' : '1.5rem',
             showCancelButton: true,
             confirmButtonText: isEdit ? '✅ Actualizar' : '💾 Guardar',
